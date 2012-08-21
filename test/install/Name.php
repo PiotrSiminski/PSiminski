@@ -1,7 +1,7 @@
 <?php
 interface Name{
     const TYPICAL = 1;
-    CONST MEDIUM = 2;
+    const MEDIUM = 2;
     const CUSTOM = 3;
     
     
@@ -9,6 +9,7 @@ interface Name{
     public function getPath();
     public function getFile();
     public function TypeInstalation($newTypeInstalation);
+	public function Install();
     //public function getTypeInstalation();
 }
 
