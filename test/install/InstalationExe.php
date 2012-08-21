@@ -21,17 +21,47 @@ class InstalationExe extends Instalation {
         //ustawienie ścieżki do wypakowania pliku instalacyjnego
         $this->Path;
     }
-    public function TypeInstalation(){
-        //wybranie rodzaju instalacji
-        switch ($Type){
-        case 1: $Type='typical instalation'; break;
-        case 2: $Type='medium instalation'; break;
-           default : $Type='customize instalation'; break;
+    /**
+     * Use one of:
+     * self::TYPICAL
+     */              
+    public function setTypeInstalation($newTypeInstalation){
+        switch ($newTypeInstalation){
+        case self::TYPICAL:
+        case self::MEDIUM:
+        case self::CUSTOM:
+        break;
+        default:
+          throw new InvalidArgumentException();
+          break;
         }
-        $this->Type->$newTypeInstalation;
-
+      $this->Type = $newTypeInstalation;
+    }
+    
+    public function getType(){
+      return $this->Type;
     }
 
+    /**
+     * @throws InvalidArgumentException gdy nie uzyto prawiodlowo setera
+     */     
+    public getTypeAsString(){}
+        switch ($this->Type){
+        case self::TYPICAL: return 'typical instalation'; break;
+        case self::MEDIUM: return 'medium instalation'; break;
+        case self::CUSTOM: return'customize instalation'; break;
+        default:
+                  throw new InvalidArgumentException( 'pojebales instalacje' ); 
+        break;
+        }
+    }
+}
 
+$Install = new InstalationExe();
+//$Install->setTypeInstalation( InstalationExe::CUSTOM );
+try{
+  echo $Install->getTypeAsString();
+} catch( InvalidArgumentException $e ){
+  echo $e->getMessage();
 }
 ?>

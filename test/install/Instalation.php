@@ -21,7 +21,7 @@ abstract class Instalation implements Name {
     public function setPath();/*
      * to set a Path to instalation
      */
-    abstract public function TypeInstalation();/*
+    abstract public function TypeInstalation($newTypeInstalation);/*
      * to set a type instalation
      * medium, typical, customize
      * on instalationJAR and InstalationEXE
