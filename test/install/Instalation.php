@@ -5,7 +5,7 @@
  *
  * @author Piotrek
  */
-abstract class Instalation implements Name{
+abstract class  Instalation implements Name{
 
 	public $getFile;
 	public $Path		 = '';
@@ -20,28 +20,21 @@ abstract class Instalation implements Name{
 		
 	}
 
-	public function setPath(); /*
-	 * to set a Path to instalation
-	 */
-
-	public function checkFileInstalation( $checkFile ){
-		$filearray = [ ];
+	public function checkFileInstalation(){
+		$filearray = [];
+                
 		foreach( $filearray as $value ){
 			$File		 = new SplFileObject( $value );
-			$extension	 = strtolower( $File->getExtension() );
+			strtolower($File->getExtension());
 			$this->parseFiles( $value );
 			if( $value !== $this->allowedType ){
 				throw new RuntimeException( 'wybrany plik nie jest plikiem instalacyjnym' );
 			}
 			$this->Install();
 		}
+                
 		return $this->checkFile;
-	}
-
-	private function parseFiles( $value ){
-		foreach( $value as $key => $value2 ){
-			
-		}
+                
 	}
 
 	/**
@@ -55,12 +48,15 @@ abstract class Instalation implements Name{
 			case self::CUSTOM:
 				break;
 			default:
-				throw new InvalidArgumentException();
+				throw new InvalidArgumentException('YOu chosen wrong opction', $newTypeInstalation);
 				break;
 		}
 		$this->Type = $newTypeInstalation;
 	}
-
+        public function getTypeInstalation() {
+            return $this->Type;
+        }
+        
 	/**
 	 * @throws InvalidArgumentException gdy nie uzyto prawiodlowo setera
 	 */
@@ -77,5 +73,12 @@ abstract class Instalation implements Name{
 				break;
 		}
 	}
+        public function setPath($newPath) {
+            $this->Path = $newPath;
+        }
+        public function getPath(){
+		return $this->Path;
+	}
+        
 
 }
